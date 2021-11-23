@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Content } from './components/Content';
+import { Nav } from './components/Nav';
+
+import s from './styles/App.module.scss';
+import { APPS } from './utils/appsData';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [activeAppId, setActiveAppId] = useState(0);
+
+    return (
+        <div className={s.wrapper}>
+            <Nav onClick={setActiveAppId} activeId={activeAppId} />
+            <Content path={APPS[activeAppId].path} />
+        </div>
+    );
 }
 
 export default App;
